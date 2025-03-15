@@ -3,7 +3,7 @@ import {Injectable} from "@angular/core";
 interface InvestmentType {
     initialInvestment: number
     annualInvestment: number
-    expectedReturns: number
+    expectedReturn: number
     duration: number
 }
 
@@ -21,12 +21,13 @@ export class InvestmentService {
     private annualData: AnnualDataType[] = []
 
     investmentCalculator(investment: InvestmentType) {
+        this.annualData = []
         let investmentValue = investment.initialInvestment;
         for (let i = 0; i < investment.duration; i++) {
             const year = i + 1;
-            const interestEarnedInYear = investmentValue * (investment.expectedReturns / 100);
+            const interestEarnedInYear = investmentValue * (investment.expectedReturn / 100);
             investmentValue += interestEarnedInYear + investment.annualInvestment;
-            const totalInterest = investmentValue * year - investment.initialInvestment;
+            const totalInterest = investmentValue - investment.annualInvestment * year - investment.initialInvestment;
 
             this.annualData.push({
                 year: year,

@@ -14,7 +14,7 @@ import {InvestmentService} from "../investment.service";
 export class UserInputComponent {
     initialInvestment = signal<string>("");
     annualInvestment = signal<string>("");
-    expectedReturns = signal<string>("");
+    expectedReturn = signal<string>("");
     duration = signal<string>("");
     investmentService = inject(InvestmentService);
 
@@ -22,7 +22,7 @@ export class UserInputComponent {
         this.investmentService.investmentCalculator({
             initialInvestment: +this.initialInvestment(),
             annualInvestment: +this.annualInvestment(),
-            expectedReturns: +this.expectedReturns(),
+            expectedReturn: +this.expectedReturn(),
             duration: +this.duration()
         })
 
